@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finance Management</title>
+  </head>
+  <body>
+    <h1 style="font-family: Arial; font-size: 36px; font-weight: bold; text-align: center;">Finance Management</h1>
+    <p style="text-align: center;">Developed by Kishnav Hurkoo</p>
+    <form id="finance-form">
+      <label for="company-name">Company Name:</label><br>
+      <input type="text" id="company-name" name="company-name"><br>
+      <label for="number-of-employees">Number of Employees:</label><br>
+      <input type="number" id="number-of-employees" name="number-of-employees" min="0"><br>
+      <label for="revenue">Revenue:</label><br>
+      <input type="number" id="revenue" name="revenue" min="0" step="0.01"><br>
+      <label for="costs">Costs:</label><br>
+      <input type="number" id="costs" name="costs" min="0" step="0.01"><br>
+      <label for="additional-income-expenses">Additional Income/Expenses:</label><br>
+      <input type="number" id="additional-income-expenses" name="additional-income-expenses" min="-999999" max="999999" step="0.01"><br><br>
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset">
+    </form> 
+    <div id="output"></div>
+    <div id="ai-advice"></div>
+
+    <script>
+      document.getElementById("finance-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var companyName = document.getElementById("company-name").value;
+        var numberOfEmployees = parseInt(document.getElementById("number-of-employees").value);
+        var revenue = parseFloat(document.getElementById("revenue").value);
+        var costs = parseFloat(document.getElementById("costs").value);
+        var additionalIncomeExpenses = parseFloat(document.getElementById("additional-income-expenses").value);
+        var grossProfit = revenue - costs;
+        var profitForYear = grossProfit + additionalIncomeExpenses;
+        var profitMargin = (grossProfit / revenue) * 100;
+        var output = "Company Name: " + companyName + "<br>Number of Employees: " + numberOfEmployees + "<br>Revenue: $" + revenue.toFixed(2) + "<br>Costs: $" + costs.toFixed(2) + "<br>Gross Profit: $" + grossProfit.toFixed(2) + "<br>Profit Margin: " + profitMargin.toFixed(2) + "%" + "<br>Profit for the Year: $" + profitForYear.toFixed(2);
+        document.getElementById("output").innerHTML = output;
+
+        // Input code to generate AI advice based on the form data
+        // and update the content of the output box
+      });
+    </script>
+  </body>
+</html>
