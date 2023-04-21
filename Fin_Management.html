@@ -3,9 +3,100 @@
   <head>
     <title>Finance Management</title>
   </head>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      --s: 82px; /* control the size */
+  --c1: #d4bfbf;
+  --c2: #9fa5ae;
+  --c3: #b7c1b3;
+  
+  --_g: var(--c3) 0 120deg,#0000 0;
+  background:
+    conic-gradient(from -60deg at 50% calc(100%/3),var(--_g)),
+    conic-gradient(from 120deg at 50% calc(200%/3),var(--_g)),
+    conic-gradient(from  60deg at calc(200%/3),var(--c3) 60deg,var(--c2) 0 120deg,#0000 0),
+    conic-gradient(from 180deg at calc(100%/3),var(--c1) 60deg,var(--_g)),
+    linear-gradient(90deg,var(--c1)   calc(100%/6),var(--c2) 0 50%,
+                          var(--c1) 0 calc(500%/6),var(--c2) 0);
+  background-size: calc(1.732*var(--s)) var(--s);
+
+    }
+    #finance-form {
+      background-color: rgb(red, green, blue,0.2);
+      border-radius: 15px;
+      box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin: 0 auto;
+      padding: 20px;
+      width: 400px;
+      position: relative;
+      top: 50px;
+
+
+    }
+    #finance-form label {
+      display: inline-block;
+      width: 200px;
+    }
+    #finance-form input[type="text"], #finance-form input[type="number"] {
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      padding: 5px;
+      width: 200px;
+    }
+    #finance-form input[type="submit"], #finance-form input[type="reset"] {
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      padding: 10px;
+      width: 100px;
+    }
+    #finance-form input[type="submit"]:hover, #finance-form input[type="reset"]:hover {
+      background-color: #45a049;
+    }
+    #output{
+      padding: 20px;
+      background-color: rgb(red, green, blue,0.2);
+      border-radius: 15px;
+      box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin: 0 auto;
+      width: 400px;
+      position: relative;
+      top: 50px;
+      
+      
+    }
+    .footer_copy {
+  display: block;
+  margin: 2.5rem 0 2rem;
+  text-align: center;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+  flex: 0 0 auto;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  background-color: var(--footer-bg-color);
+}
+    
+  </style>
   <body>
-    <h1 style="font-family: Arial; font-size: 36px; font-weight: bold; text-align: center;">Finance Management</h1>
-    <p style="text-align: center;">Developed by Kishnav Hurkoo</p>
     <form id="finance-form">
       <label for="company-name">Company Name:</label><br>
       <input type="text" id="company-name" name="company-name"><br>
@@ -15,7 +106,9 @@
       <input type="number" id="revenue" name="revenue" min="0" step="0.01"><br>
       <label for="costs">Costs:</label><br>
       <input type="number" id="costs" name="costs" min="0" step="0.01"><br>
-      <label for="additional-income-expenses">Additional Income/Expenses:</label><br>
+      <label for="additional-income-expenses">Additional Income:</label><br>
+      <input type="number" id="additional-income-expenses" name="additional-income-expenses" min="-999999" max="999999" step="0.01"><br><br>
+      <label for="additional-income-expenses">Additional Expenses</label>
       <input type="number" id="additional-income-expenses" name="additional-income-expenses" min="-999999" max="999999" step="0.01"><br><br>
       <input type="submit" value="Submit">
       <input type="reset" value="Reset">
@@ -24,6 +117,16 @@
     <div id="ai-advice"></div>
 
     <script>
+      //connect database to js
+      var firebaseConfig = {
+        apiKey: "AIzaSyD-5Z5Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3Z3Z",
+        authDomain: "finance-management-1234.firebaseapp.com",
+        databaseURL: "https://finance-management-1234.firebaseio.com",
+        projectId: "finance-management-1234",
+        storageBucket: "finance-management-1234.appspot.com",
+        messagingSenderId: "123456789",
+        appId: "1:123456789:web:123456789"
+      };
       document.getElementById("finance-form").addEventListener("submit", function(event) {
         event.preventDefault();
         var companyName = document.getElementById("company-name").value;
@@ -37,9 +140,12 @@
         var output = "Company Name: " + companyName + "<br>Number of Employees: " + numberOfEmployees + "<br>Revenue: $" + revenue.toFixed(2) + "<br>Costs: $" + costs.toFixed(2) + "<br>Gross Profit: $" + grossProfit.toFixed(2) + "<br>Profit Margin: " + profitMargin.toFixed(2) + "%" + "<br>Profit for the Year: $" + profitForYear.toFixed(2);
         document.getElementById("output").innerHTML = output;
 
-        // Input code to generate AI advice based on the form data
-        // and update the content of the output box
       });
     </script>
+    <footer class="footer container">
+      <span class="footer_copy">
+          &#169; 2023. All rights reserved by Kishnav Hurkoo & Tushil-G
+      </span>
+  </footer>
   </body>
 </html>
