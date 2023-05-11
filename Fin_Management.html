@@ -95,7 +95,7 @@
 }
     
   </style>
-  <body>
+  <body onload="OnLoad()">
     <form id="finance-form">
       <label for="company-name">Company Name:</label><br>
      <select name="industry" id="industry">
@@ -130,6 +130,31 @@
     </form> 
     <div id="output"></div>
     <div id="ai-advice"></div>
+    <br>
+    <div id="idContainer">
+        <textarea id="txtOutput" rows="10" style="margin-top: 10px; width: 100%;" 
+         placeholder="Output"></textarea>
+
+        <div>
+            <button type="button" onclick="Send()" id="btnSend">Send</button>
+
+            <select id="selLang" onchange="ChangeLang(this)">
+                <option value="en-US">English (United States)</option>
+                <option value="fr-FR">French (France)</option>
+                <option value="ru-RU">Russian (Russia)</option>
+                <option value="pt-BR">Portuguese (Brazil)</option>
+                <option value="es-ES">Spanish (Spain)</option>
+                <option value="de-DE">German (Germany)</option>
+                <option value="it-IT">Italian (Italy)</option>
+                <option value="pl-PL">Polish (Poland)</option>
+                <option value="nl-NL">Dutch (Netherlands)</option>
+            </select>
+        </div>
+
+        <textarea id="txtMsg" rows="5" wrap="soft" style="width: 98%;margin-left: 3px; margin-top: 6px" placeholder="Input Text"></textarea>
+
+
+
 
     <script>
       //connect database to js
@@ -157,10 +182,13 @@
 
       });
     </script>
+    
     <footer class="footer container">
       <span class="footer_copy">
           &#169; 2023. All rights reserved by Kishnav Hurkoo & Tushil-G
       </span>
   </footer>
+  <script src="./config.js"></script>
+  <script src="./chatgpt.js"></script>
   </body>
 </html>
