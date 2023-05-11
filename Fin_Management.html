@@ -129,13 +129,12 @@
       <input type="reset" value="Reset">
     </form> 
     <div id="output"></div>
+    <br>
     <div id="ai-advice"></div>
     <br>
-    <div id="idContainer">
-        <textarea id="txtOutput" rows="10" style="margin-top: 10px; width: 100%;" 
-         placeholder="Output"></textarea>
-
-        <div>
+    <hr>
+    <br>
+    <div id="footer">
             <button type="button" onclick="Send()" id="btnSend">Send</button>
 
             <select id="selLang" onchange="ChangeLang(this)">
@@ -152,7 +151,13 @@
         </div>
 
         <textarea id="txtMsg" rows="5" wrap="soft" style="width: 98%;margin-left: 3px; margin-top: 6px" placeholder="Input Text"></textarea>
-
+         <div id="idContainer">
+          <textarea id="txtOutput" rows="10" style="margin-top: 10px; width: 100%;" 
+           placeholder="Output" disabled></textarea>
+  
+          <div>
+          </div>
+      </div>  
 
 
 
